@@ -13,11 +13,7 @@ CORS(app)  # Enable CORS for all routes
 model = load_model("./fruit_classifier.h5")
 
 # Define the image size required by your model
-IMG_HEIGHT, IMG_WIDTH = (
-    100,
-    100,
-)  # Update these dimensions according to your model's requirements
-
+IMG_HEIGHT, IMG_WIDTH = 100, 100  # Update these dimensions according to your model's requirements
 
 def prepare_image(img):
     # Convert image to RGB if it's not
@@ -28,11 +24,9 @@ def prepare_image(img):
     img_array = np.expand_dims(img_array, axis=0)
     return img_array
 
-
 @app.route("/")
 def serve_html():
     return send_file("./index.html")
-
 
 @app.route("/upload", methods=["POST"])
 def upload_image():
@@ -52,42 +46,14 @@ def upload_image():
 
             # Replace this with your own class labels
             class_labels = [
-                "apple",
-                "banana",
-                "beetroot",
-                "bell pepper",
-                "cabbage",
-                "capsicum",
-                "carrot",
-                "cauliflower",
-                "chilli pepper",
-                "corn",
-                "cucumber",
-                "eggplant",
-                "garlic",
-                "ginger",
-                "grapes",
-                "jalepeno",
-                "kiwi",
-                "lemon",
-                "lettuce",
-                "mango",
-                "onion",
-                "orange",
-                "paprika",
-                "pear",
-                "peas",
-                "pineapple",
-                "pomegranate",
-                "potato",
-                "raddish",
-                "soy beans",
-                "spinach",
-                "sweetcorn",
-                "sweetpotato",
-                "tomato",
-                "turnip",
-                "watermelon",
+                "apple", "banana", "beetroot", "bell pepper", "cabbage",
+                "capsicum", "carrot", "cauliflower", "chilli pepper", "corn",
+                "cucumber", "eggplant", "garlic", "ginger", "grapes",
+                "jalepeno", "kiwi", "lemon", "lettuce", "mango",
+                "onion", "orange", "paprika", "pear", "peas",
+                "pineapple", "pomegranate", "potato", "raddish", "soy beans",
+                "spinach", "sweetcorn", "sweetpotato", "tomato", "turnip",
+                "watermelon"
             ]
             predicted_label = class_labels[predicted_class[0]]
 
@@ -98,6 +64,5 @@ def upload_image():
 
     return jsonify({"error": "Invalid file format"}), 400
 
-
-# if __name__ == "__main__":
-#     app.run(debug=True)
+if __name__ == "__main__":
+    app.run(debug=True, port=4000)
