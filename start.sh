@@ -3,7 +3,7 @@
 # Exit early on errors
 set -eu
 
-# Python buffers stdout. Without this, you won't see what you "print" in the Activity Logs
+# Ensure Python 3 is used
 export PYTHONUNBUFFERED=true
 
 # Install Python 3 virtual env
@@ -14,11 +14,11 @@ if [ ! -d $VIRTUALENV ]; then
 fi
 
 if [ ! -f $VIRTUALENV/bin/pip ]; then
-  curl --silent --show-error --retry 5 https://bootstrap.pypa.io/get-pip.py | $VIRTUALENV/bin/python
+  curl --silent --show-error --retry 5 https://bootstrap.pypa.io/get-pip.py | $VIRTUALENV/bin/python3
 fi
 
 # Install the requirements
 $VIRTUALENV/bin/pip install -r requirements.txt
 
-# Run a glorious Python 3 server
+# Run the Python 3 server
 $VIRTUALENV/bin/python3 app.py
