@@ -99,5 +99,5 @@ def upload_image():
     return jsonify({"error": "Invalid file format"}), 400
 
 
-if __name__ == "__main__":
-    app.run(debug=True)
+# if __name__ == "__main__":
+#     app.run(debug=True)
